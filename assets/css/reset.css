@@ -48,7 +48,7 @@ body {
 /* Reset font-size */
 html,
 body {
-  font-size: 10px;
+  font-size: 16px;
 }
 
 /* A elements that don't have a class get default styles */
