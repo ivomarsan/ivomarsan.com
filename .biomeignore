@@ -1,0 +1,11 @@
+node_modules
+dist
+.nuxt
+.output
+coverage
+*.min.js
+*.bundle.js
+public
+.git
+assets/css/
+**/*.css
