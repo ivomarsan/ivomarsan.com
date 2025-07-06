@@ -2,6 +2,7 @@ import type { NuxtAppConfig } from 'nuxt/schema';
 
 
 import { useBuildVariables } from '../useBuildVariables';
+import { useLinkConfig } from './useLinkConfig';
 import { useMetaConfig } from './useMetaConfig';
 
 export const useHeadConfig = (): NuxtAppConfig['head'] => {
@@ -23,5 +24,6 @@ export const useHeadConfig = (): NuxtAppConfig['head'] => {
     viewport,
     title,
     meta: useMetaConfig(),
+    link: useLinkConfig(),
   };
 }
