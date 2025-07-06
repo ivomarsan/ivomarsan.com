@@ -1,0 +1,20 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --purple: #6751eb;
+  --grey: #1e1e1d;
+  --yellow: #ffad15;
+  --green: #42b983;
+  --text: #2c3e50;
+  --offwhite: #f8f8f8;
+  --links: color-mod(var(--purple) tint(30%));
+  --menu-bg: color-mod(var(--purple) tint(90%));
+  --darkerwhite: color-mod(var(--offwhite) shade(20%));
+
+  --max-width: 120rem;
+  --header-height: 10rem;
+  --footer-height: 16rem;
+
+  --font-size-p: 1.6rem;
+  --font-size-h1: 2.6rem;
+}

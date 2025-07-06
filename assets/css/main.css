@@ -1,4 +1,5 @@
 @import 'reset.css';
+@import 'variables.css';
 
 body {
   font-family: 'Inter', sans-serif;
