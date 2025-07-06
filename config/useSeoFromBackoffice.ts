@@ -10,7 +10,7 @@ export const useSeoFromBackoffice = () => {
       return titleFromBackoffice;
     }
 
-    return `${$variables.appName} 🍀 Cassino e Apostas Online | Apostas Esportivas`;
+    return `${$variables.appName} - Desenvolvedor Front-End`;
     }
 
     function getDescription() {
@@ -20,7 +20,7 @@ export const useSeoFromBackoffice = () => {
         return descriptionFromBackoffice;
       }
 
-      return `${$variables.appName} é o melhor site de cassino 🎰 e apostas esportivas ⚽ com diversas opções de esportes para apostar, jogos de cassino para jogar e promoções exclusivas 🎁. Com uma plataforma intuitiva e segura, oferecemos milhares de jogos de cassino, jogos de esportes e suporte ao cliente 24/7.`;
+      return `Desenvolvedor Front-End especializado em Nuxt. Criando soluções web inovadoras e performáticas.`;
     }
 
   return {

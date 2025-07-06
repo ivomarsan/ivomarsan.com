@@ -17,14 +17,23 @@ export const useMetaConfig = (): NuxtAppConfig['head']['meta'] => {
       name: 'apple-mobile-web-app-title',
       content: $variables.appName,
     },
-
+    {
+      name: 'author',
+      content: 'ivomarsan'
+    },
     {
       name: 'description',
       content: $seo.description,
     },
     {
+      name: 'keywords',
+      content: 'desenvolvedor, front-end, vue, nodejs, javascript, typescript, web developer'
+    },
+
+    // Open Graph
+    {
       name: 'og:title',
-      content: $variables.SEO_DEFALT_OG_TITLE,
+      content: $seo.title,
     },
     {
       name: 'og:site_name',
@@ -39,10 +48,13 @@ export const useMetaConfig = (): NuxtAppConfig['head']['meta'] => {
       content: $seo.description,
     },
     {
+      name: 'og:url',
+      content: $variables.OG_URL,
+    },
+    {
       name: 'og:image',
       content: $variables.OG_IMAGE_PREVIEW,
     },
-
     {
       name: 'og:image:width',
       content: $variables.OG_IMAGE_WIDTH,
