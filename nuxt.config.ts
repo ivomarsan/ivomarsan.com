@@ -1,8 +1,7 @@
 import type { NuxtConfig } from 'nuxt/config';
 
-import { useHeadConfig } from "./config";
 
-const { htmlAttrs, charset, viewport, title, meta, link } = useHeadConfig()
+// const { htmlAttrs, charset, viewport, title, meta, link } = useHeadConfig()
 
 const nuxtConfig: NuxtConfig = {
   compatibilityDate: '2025-05-15',
@@ -10,16 +9,16 @@ const nuxtConfig: NuxtConfig = {
   css: ['~/assets/css/main.css'],
   
   // SEO Configuration
-  app: {
-    head: {
-      htmlAttrs,
-      charset,
-      viewport,
-      title,
-      meta,
-      link
-    }
-  },
+  // app: {
+  //   head: {
+  //     htmlAttrs,
+  //     charset,
+  //     viewport,
+  //     title,
+  //     meta,
+  //     link
+  //   }
+  // },
 
   nitro: {
     preset: 'bun',
