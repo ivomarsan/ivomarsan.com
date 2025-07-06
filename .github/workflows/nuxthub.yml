@@ -1,4 +1,4 @@
-name: Deploy to NuxtHub
+name: 🚀 Deploy to NuxtHub
 on:
   push:
     branches:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    name: "Deploy to NuxtHub"
+    name: "🚀 Deploy to NuxtHub"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -15,18 +15,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Bun
+      - name: 🔧 Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: bun install
 
-      - name: Ensure NuxtHub module is installed
+      - name: ✅ Ensure NuxtHub module is installed
         run: bunx nuxthub@latest ensure
 
-      - name: Build & Deploy to NuxtHub
+      - name: 🏗️ Build & Deploy to NuxtHub
         uses: nuxt-hub/action@v2
         with:
           project-key: ivomarsan-com-hvqe
