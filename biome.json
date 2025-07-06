@@ -12,27 +12,114 @@
     "enabled": true,
     "indentStyle": "space",
     "indentWidth": 2,
-    "lineEnding": "lf"
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "attributePosition": "multiline"
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
-      "style": {
-        "noNonNullAssertion": "off"
-      },
-      "suspicious": {
-        "noExplicitAny": "warn"
+      "complexity": {
+        "noForEach": "warn",
+        "noUselessCatch": "warn"
       },
       "correctness": {
-        "noUnknownFunction": "off"
+        "noUnknownFunction": "info",
+        "noUndeclaredVariables": {
+          "level": "warn",
+          "options": {
+            "checkTypes": true
+          }
+        },
+        "noUnusedVariables": "warn"
+      },
+      "style": {
+        "useTemplate": "info",
+        "noNegationElse": "info",
+        "useNamingConvention": {
+          "level": "info",
+          "options": {
+            "strictCase": false,
+            "requireAscii": true,
+            "conventions": [
+              {
+                "selector": {
+                  "kind": "const",
+                  "scope": "global"
+                },
+                "formats": ["camelCase"]
+              }
+            ]
+          }
+        },
+        "noImplicitBoolean": "off",
+        "noNonNullAssertion": "error"
+      },
+      "suspicious": {
+        "noExplicitAny": "off"
       }
     }
   },
   "javascript": {
     "formatter": {
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
       "quoteStyle": "single",
-      "semicolons": "asNeeded"
+      "semicolons": "always",
+      "trailingCommas": "all"
+    },
+    "globals": [
+      "ref",
+      "computed",
+      "reactive",
+      "watch",
+      "watchEffect",
+      "onMounted",
+      "onBeforeMount",
+      "onUpdated",
+      "onBeforeUpdate",
+      "onUnmounted",
+      "onBeforeUnmount",
+      "useRoute",
+      "useRouter",
+      "navigateTo",
+      "useRuntimeConfig",
+      "useState",
+      "useCookie",
+      "useHead",
+      "useSeoMeta",
+      "useLazyFetch",
+      "useFetch",
+      "useAsyncData",
+      "$fetch",
+      "refreshCookie",
+      "definePageMeta",
+      "defineNuxtPlugin",
+      "defineNuxtRouteMiddleware",
+      "createError",
+      "showError",
+      "clearError",
+      "isNuxtError",
+      "defineNuxtConfig",
+      "process"
+    ]
+  },
+  "json": {
+    "formatter": {
+      "trailingCommas": "none"
+    }
+  },
+  "css": {
+    "formatter": {
+      "enabled": true,
+      "quoteStyle": "single"
+    },
+    "linter": {
+      "enabled": true
     }
   },
   "assist": {
