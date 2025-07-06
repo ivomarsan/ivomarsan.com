@@ -1,2 +1,9 @@
-User-Agent: *
-Disallow:
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ivomarsan.com/sitemap.xml
+
+# Disallow admin or sensitive areas (if any)
+# Disallow: /admin/
+# Disallow: /api/
