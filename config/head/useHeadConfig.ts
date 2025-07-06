@@ -2,6 +2,7 @@ import type { NuxtAppConfig } from 'nuxt/schema';
 
 
 import { useVariables } from '../useVariables';
+import { useMetaConfig } from './useMetaConfig';
 
 export const useHeadConfig = (): NuxtAppConfig['head'] => {
   const { $variables } = useVariables();
@@ -21,5 +22,6 @@ export const useHeadConfig = (): NuxtAppConfig['head'] => {
     charset,
     viewport,
     title,
+    meta: useMetaConfig(),
   };
 }

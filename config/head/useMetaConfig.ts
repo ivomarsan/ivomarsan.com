@@ -4,7 +4,7 @@ import { useSeoFromBackoffice } from '../useSeoFromBackoffice';
 import { useVariables } from '../useVariables';
 
 
-export const useMetaTags = (): NuxtAppConfig['head']['meta'] => {
+export const useMetaConfig = (): NuxtAppConfig['head']['meta'] => {
   const { $variables } = useVariables();
   const { $seo } = useSeoFromBackoffice();
 
