@@ -1,11 +1,11 @@
 import type { NuxtAppConfig } from 'nuxt/schema';
 
+import { useBuildVariables } from '../useBuildVariables';
 import { useSeoFromBackoffice } from '../useSeoFromBackoffice';
-import { useVariables } from '../useVariables';
 
 
 export const useMetaConfig = (): NuxtAppConfig['head']['meta'] => {
-  const { $variables } = useVariables();
+  const { $variables } = useBuildVariables();
   const { $seo } = useSeoFromBackoffice();
 
   const metaTagsBase = [

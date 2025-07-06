@@ -1,4 +1,4 @@
-export const useVariables = () => {
+export const useBuildVariables = () => {
   const themeColor = '#000000'
 
   const appName = 'ivomarsan';

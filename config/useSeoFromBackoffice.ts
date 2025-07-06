@@ -1,7 +1,7 @@
-import { useVariables } from './useVariables';
+import { useBuildVariables } from './useBuildVariables';
 
 export const useSeoFromBackoffice = () => {
-  const { $variables } = useVariables();
+  const { $variables } = useBuildVariables();
 
   function getTitle() {
     const titleFromBackoffice = process.env.THEME_SEO_PAGE_TITLE;
