@@ -24,8 +24,10 @@ export const useSeoFromBackoffice = () => {
     }
 
   return {
-    title: getTitle(),
-    description: getDescription()
+    $seo: {
+      title: getTitle(),
+      description: getDescription(),
+    }
   };
 }
   
