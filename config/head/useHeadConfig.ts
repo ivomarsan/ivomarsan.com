@@ -1,6 +1,11 @@
 import type { NuxtAppConfig } from 'nuxt/schema';
 
+
+import { useVariables } from '../useVariables';
+
 export const useHeadConfig = (): NuxtAppConfig['head'] => {
+  const { $variables } = useVariables();
+
   const htmlAttrs = {
     lang: 'pt-BR'
   }
@@ -9,7 +14,7 @@ export const useHeadConfig = (): NuxtAppConfig['head'] => {
 
   const viewport = 'width=device-width, initial-scale=1';
 
-  const title = 'ivomarsan';
+  const title = $variables.appName;
 
   return {
     htmlAttrs,
