@@ -9,5 +9,5 @@ export const useLinkConfig = () => {
       type: 'image/x-icon',
       href: '/favicon.ico',
     },
-  ]
-}
+  ];
+};

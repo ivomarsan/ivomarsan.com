@@ -1,13 +1,13 @@
-import type { NuxtConfig } from 'nuxt/config'
+import type { NuxtConfig } from 'nuxt/config';
 
-import { useHeadConfig } from './config'
+import { useHeadConfig } from './config';
 
-const head = useHeadConfig()
+const head = useHeadConfig();
 
 const nuxtConfig: NuxtConfig = {
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  css: ['~/assets/css/main.css'],
+  css: ['@/assets/css/main.css'],
 
   modules: ['@nuxthub/core'],
 
@@ -21,7 +21,7 @@ const nuxtConfig: NuxtConfig = {
       openAPI: true,
     },
   },
-}
+};
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export default defineNuxtConfig(nuxtConfig)
+export default defineNuxtConfig(nuxtConfig);

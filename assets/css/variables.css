@@ -7,9 +7,6 @@
   --green: #42b983;
   --text: #2c3e50;
   --offwhite: #f8f8f8;
-  --links: color-mod(var(--purple) tint(30%));
-  --menu-bg: color-mod(var(--purple) tint(90%));
-  --darkerwhite: color-mod(var(--offwhite) shade(20%));
 
   --max-width: 120rem;
   --header-height: 10rem;

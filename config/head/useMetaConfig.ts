@@ -1,11 +1,11 @@
-import type { NuxtAppConfig } from 'nuxt/schema'
+import type { NuxtAppConfig } from 'nuxt/schema';
 
-import { useBuildVariables } from '../useBuildVariables'
-import { useSeoFromBackoffice } from '../useSeoFromBackoffice'
+import { useBuildVariables } from '../useBuildVariables';
+import { useSeoFromBackoffice } from '../useSeoFromBackoffice';
 
 export const useMetaConfig = (): NuxtAppConfig['head']['meta'] => {
-  const { $variables } = useBuildVariables()
-  const { $seo } = useSeoFromBackoffice()
+  const { $variables } = useBuildVariables();
+  const { $seo } = useSeoFromBackoffice();
 
   const metaTagsBase = [
     {
@@ -83,7 +83,7 @@ export const useMetaConfig = (): NuxtAppConfig['head']['meta'] => {
       name: 'build-version',
       content: 'multi-app',
     },
-  ]
+  ];
 
   const metaTags = [
     {
@@ -98,39 +98,39 @@ export const useMetaConfig = (): NuxtAppConfig['head']['meta'] => {
       name: 'mobile-web-app-capable',
       content: 'yes',
     },
-  ]
+  ];
 
   if ($variables.ROBOTS_NO_INDEX) {
     metaTags.push({
       name: 'robots',
       content: 'noindex, nofollow',
-    })
+    });
   }
 
   if ($variables.GOOGLE_SITE_VERIFICATION) {
     metaTags.push({
       name: 'google-site-verification',
       content: $variables.GOOGLE_SITE_VERIFICATION,
-    })
+    });
   }
 
   if ($variables.FACEBOOK_DOMAIN_VERIFICATION) {
     metaTags.push({
       name: 'facebook-domain-verification',
       content: $variables.FACEBOOK_DOMAIN_VERIFICATION,
-    })
+    });
   }
 
   for (let i = 0; i < metaTagsBase.length; i++) {
-    const metaTag = metaTagsBase[i]
+    const metaTag = metaTagsBase[i];
 
     if (metaTag.content?.trim()) {
-      metaTag.content = metaTag.content.trim()
-      metaTags.push(metaTag)
+      metaTag.content = metaTag.content.trim();
+      metaTags.push(metaTag);
     } else if ($variables.PRINT_BUILD_DEBUGS) {
-      console.log(`TAG NAME: ${metaTag.name} [SKIP PQ N TEM CONTENT]`)
+      console.log(`TAG NAME: ${metaTag.name} [SKIP PQ N TEM CONTENT]`);
     }
   }
 
-  return metaTags
-}
+  return metaTags;
+};
