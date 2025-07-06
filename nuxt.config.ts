@@ -17,6 +17,7 @@ const nuxtConfig: NuxtConfig = {
   },
 
   nitro: {
+    preset: 'bun',
     experimental: {
       openAPI: true,
     },

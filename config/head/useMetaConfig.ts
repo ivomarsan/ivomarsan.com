@@ -92,7 +92,7 @@ export const useMetaConfig = (): NuxtAppConfig['head']['meta'] => {
     {
       name: 'viewport',
       content:
-        'width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=yes, shrink-to-fit=no',
+        'width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover, user-scalable=yes, shrink-to-fit=no',
     },
     {
       name: 'mobile-web-app-capable',
