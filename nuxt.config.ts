@@ -41,6 +41,18 @@ const nuxtConfig: NuxtConfig = {
     },
     compressPublicAssets: true,
     minify: true,
+    routeRules: {
+      '/_fonts/**': {
+        headers: {
+          'Cache-Control': 'public, max-age=31536000, immutable',
+        },
+      },
+    },
+  },
+
+  experimental: {
+    payloadExtraction: false,
+    treeshakeClientOnly: true,
   },
 };
 
