@@ -1,0 +1,12 @@
+# Bun configuration for this project
+
+[install]
+# Use exact versions for better reproducibility
+exact = true
+
+# Registry configuration
+registry = "https://registry.npmjs.org/"
+
+[run]
+# Prefer bun for script execution
+shell = "bun"

@@ -2,6 +2,7 @@
   "name": "ivomarsan-com",
   "private": true,
   "type": "module",
+  "packageManager": "bun@1.2.5",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -12,7 +13,8 @@
     "lint:fix": "biome check . --write",
     "format": "biome format . --write && prettier --write \"**/*.css\"",
     "format:css": "prettier --write \"**/*.css\"",
-    "check": "biome check . --write && prettier --write \"**/*.css\""
+    "check": "biome check . --write && prettier --write \"**/*.css\"",
+    "update-biome": "bun scripts/update-biome-globals.mjs"
   },
   "dependencies": {
     "@nuxthub/core": "^0.9.0",
