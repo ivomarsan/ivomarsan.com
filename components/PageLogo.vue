@@ -4,7 +4,7 @@
 
 <template>
   <section :class="$style.pageLogo">
-    <div :class="$style.backgroundLogo"></div>
+    <!-- <div :class="$style.backgroundLogo"></div> -->
 
     <svg
       viewBox="0 0 128 128"
