@@ -18,6 +18,18 @@ const nuxtConfig: NuxtConfig = {
 
   modules: ['@nuxthub/core', '@nuxt/fonts'],
 
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vue: ['vue', 'vue-router'],
+          },
+        },
+      },
+    },
+  },
+
   // SEO Configuration
   app: {
     head,
