@@ -30,8 +30,7 @@
   z-index: 2;
 
   & h1 {
-    font-family: monospace;
-    font-weight: lighter;
+    font-family: Monofett, monospace;
     font-size: 4rem;
     color: var(--white);
   }
