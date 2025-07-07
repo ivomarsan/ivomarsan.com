@@ -27,6 +27,8 @@ const nuxtConfig: NuxtConfig = {
     experimental: {
       openAPI: true,
     },
+    compressPublicAssets: true,
+    minify: true,
   },
 };
 
