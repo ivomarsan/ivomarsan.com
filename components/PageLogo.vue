@@ -4,7 +4,7 @@
 
 <template>
   <section :class="$style.pageLogo">
-    <!-- <div :class="$style.backgroundLogo"></div> -->
+    <div :class="$style.backgroundLogo"></div>
 
     <svg
       viewBox="0 0 128 128"
@@ -37,7 +37,7 @@
     font-size: 4rem;
     color: var(--white);
     opacity: 0;
-    /* animation: reposition 1s ease-in-out forwards 4s; */
+    animation: reposition 1s ease-in-out forwards 4s;
   }
 
   & svg {
@@ -47,8 +47,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* animation: resize 1s ease-in-out forwards 3s,
-      reposition 1s ease-in-out forwards 4s; */
+    animation: resize 1s ease-in-out forwards 3s,
+      reposition 1s ease-in-out forwards 4s;
   }
 }
 
@@ -59,11 +59,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  /* animation: fade-out 500ms ease-in-out forwards 3.5s; */
+  animation: fade-out 500ms ease-in-out forwards 3.5s;
 }
 
 .logo {
-  fill: var(--white);
+  fill: transparent;
   fill-opacity: 1;
   stroke: var(--white);
   stroke-width: 0.3;
@@ -71,8 +71,8 @@
   stroke-miterlimit: 4;
   stroke-dasharray: 394;
   stroke-dashoffset: 394;
-  /* animation: drawn-letter 3s ease-in-out forwards,
-    fill-letter 500ms ease-in-out forwards 2s */
+  animation: drawn-letter 3s ease-in-out forwards,
+    fill-letter 500ms ease-in-out forwards 2s
 }
 
 .dot {
@@ -83,8 +83,8 @@
   stroke-opacity: 1;
   stroke-dasharray: 26;
   stroke-dashoffset: 26;
-  /* animation: drawn-letter 1s ease-in-out forwards 1s,
-    fill-letter 500ms ease-in-out forwards 2s; */
+  animation: drawn-letter 1s ease-in-out forwards 1s,
+    fill-letter 500ms ease-in-out forwards 2s;
 }
 
 .border {
@@ -93,7 +93,7 @@
   stroke: var(--white);
   stroke-width: 6;
   stroke-opacity: 0;
-  /* animation: stroke-opacity 500ms ease-in-out forwards 5s; */
+  animation: stroke-opacity 500ms ease-in-out forwards 5s;
 }
 
 @keyframes drawn-letter {
