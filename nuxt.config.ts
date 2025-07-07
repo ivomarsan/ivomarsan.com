@@ -6,7 +6,14 @@ const head = useHeadConfig();
 
 const nuxtConfig: NuxtConfig = {
   compatibilityDate: '2025-05-15',
-  devtools: { enabled: true },
+
+  devtools: {
+    enabled: process.env.NODE_ENV === 'development',
+    timeline: {
+      enabled: process.env.NODE_ENV === 'development',
+    },
+  },
+
   css: ['@/assets/css/main.css'],
 
   modules: ['@nuxthub/core', '@nuxt/fonts'],
