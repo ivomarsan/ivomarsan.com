@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <div :class="$style.index">
+  <main :class="$style.index" role="main">
     <PageLogo />
-  </div>
+  </main>
 </template>
 
 <style module lang="postcss">
