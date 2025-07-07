@@ -48,7 +48,7 @@
                   "kind": "const",
                   "scope": "global"
                 },
-                "formats": ["camelCase"]
+                "formats": ["camelCase", "CONSTANT_CASE"]
               },
               {
                 "selector": {
