@@ -8,6 +8,9 @@
       viewBox="0 0 128 128"
       preserveAspectRatio="xMidYMid meet"
       xmlns="http://www.w3.org/2000/svg"
+      :class="$style.logoSvg"
+      role="img"
+      aria-label="Logo ivomarsan"
     >
       <path
         :class="$style.logo"
@@ -28,22 +31,25 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
+  contain: layout style paint;
 
   & h1 {
     font-family: Monofett, monospace;
     font-size: 4rem;
     color: var(--white);
-  }
-
-  & svg {
-    width: 15rem;
-    height: 15rem;
-    top: 50%;
-    left: 50%;
+    text-rendering: optimizeSpeed;
+    font-display: swap;
   }
 }
 
-
+.logoSvg {
+  width: 15rem;
+  height: 15rem;
+  top: 50%;
+  left: 50%;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
 
 .logo {
   fill: transparent;
@@ -54,8 +60,9 @@
   stroke-miterlimit: 4;
   stroke-dasharray: 394;
   stroke-dashoffset: 394;
+  will-change: stroke-dashoffset, fill;
   animation: drawn-letter 3s ease-in-out forwards,
-    fill-letter 500ms ease-in-out forwards 2s
+    fill-letter 500ms ease-in-out forwards 2s;
 }
 
 .dot {
@@ -66,6 +73,7 @@
   stroke-opacity: 1;
   stroke-dasharray: 26;
   stroke-dashoffset: 0;
+  will-change: stroke-dashoffset, fill;
   animation: drawn-letter 1s ease-in-out forwards 1s,
     fill-letter 500ms ease-in-out forwards 2s;
 }
@@ -76,6 +84,7 @@
   stroke: var(--white);
   stroke-width: 6;
   stroke-opacity: 0;
+  will-change: stroke-opacity;
   animation: stroke-opacity 500ms ease-in-out forwards 5s;
 }
 
@@ -97,19 +106,14 @@
   }
 }
 
-
-
-
-@media screen and (max-width: 500px) {
-  #page-logo {
-    & h1 {
-      display: none;
-    }
-
-    & svg {
-      width: 30rem;
-      height: 30rem;
-    }
+@media (prefers-reduced-motion: reduce) {
+  .logo,
+  .dot,
+  .border {
+    animation: none;
+    stroke-dashoffset: 0;
+    fill: #fff;
+    stroke-opacity: 1;
   }
 }
 </style>
