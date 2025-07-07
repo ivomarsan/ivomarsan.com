@@ -9,7 +9,7 @@ const nuxtConfig: NuxtConfig = {
   devtools: { enabled: true },
   css: ['@/assets/css/main.css'],
 
-  modules: ['@nuxthub/core'],
+  modules: ['@nuxthub/core', '@nuxt/fonts'],
 
   // SEO Configuration
   app: {

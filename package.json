@@ -17,6 +17,7 @@
     "update-biome": "bun scripts/update-biome-globals.mjs"
   },
   "dependencies": {
+    "@nuxt/fonts": "0.11.4",
     "@nuxthub/core": "^0.9.0",
     "nuxt": "^3.17.6",
     "vue": "^3.5.17",
