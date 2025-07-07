@@ -4,8 +4,6 @@
 
 <template>
   <section :class="$style.pageLogo">
-    <div :class="$style.backgroundLogo"></div>
-
     <svg
       viewBox="0 0 128 128"
       preserveAspectRatio="xMidYMid meet"
@@ -36,31 +34,17 @@
     font-weight: lighter;
     font-size: 4rem;
     color: var(--white);
-    opacity: 0;
-    animation: reposition 1s ease-in-out forwards 4s;
   }
 
   & svg {
-    width: 50rem;
-    height: 50rem;
-    position: fixed;
+    width: 15rem;
+    height: 15rem;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    animation: resize 1s ease-in-out forwards 3s,
-      reposition 1s ease-in-out forwards 4s;
   }
 }
 
-.backgroundLogo {
-  background-color: var(--purple);
-  width: 100vw;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  animation: fade-out 500ms ease-in-out forwards 3.5s;
-}
+
 
 .logo {
   fill: transparent;
@@ -82,7 +66,7 @@
   stroke-width: 0.3;
   stroke-opacity: 1;
   stroke-dasharray: 26;
-  stroke-dashoffset: 26;
+  stroke-dashoffset: 0;
   animation: drawn-letter 1s ease-in-out forwards 1s,
     fill-letter 500ms ease-in-out forwards 2s;
 }
@@ -114,37 +98,8 @@
   }
 }
 
-@keyframes resize {
-  to {
-    opacity: 0;
-    width: 15rem;
-    height: 15rem;
-  }
-}
 
-@keyframes reposition {
-  from,
-  to {
-    position: unset;
-    transform: none;
-  }
 
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  to {
-    opacity: 0;
-    height: 0;
-    transform: translate3d(0, 100vh, 0);
-  }
-}
 
 @media screen and (max-width: 500px) {
   #page-logo {

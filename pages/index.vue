@@ -4,8 +4,7 @@
 
 <template>
   <main :class="$style.index" role="main">
-    <!-- <PageLogo /> -->
-     <h1>ivomarsan</h1>
+    <PageLogo />
   </main>
 </template>
 
