@@ -14,5 +14,7 @@
   justify-content: center;
   background-color: var(--black);
   height: 100dvh;
+  contain: layout style paint;
+  transform: translateZ(0);
 }
 </style>
