@@ -10,4 +10,5 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   contain: layout style paint;
+  font-display: swap;
 }

@@ -34,7 +34,7 @@
   contain: layout style paint;
 
   & h1 {
-    font-family: Monofett, monospace;
+    font-family: 'Monofett', monospace;
     font-size: 4rem;
     color: var(--white);
     text-rendering: optimizeSpeed;
