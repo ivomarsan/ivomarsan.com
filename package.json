@@ -9,6 +9,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "git:clean": "git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D",
     "lint": "biome check .",
     "lint:fix": "biome check . --write",
     "format": "biome format . --write && prettier --write \"**/*.css\"",
