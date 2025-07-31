@@ -8,44 +8,68 @@ import { join } from 'node:path';
  */
 async function updateBiomeGlobals() {
   try {
-    // Ler composables da pasta composables
-    const composablesDir = './composables';
-    const files = await readdir(composablesDir);
-
+    // Diretórios a serem escaneados
+    const dirsToScan = ['./composables', './stores'];
     const composableNames = [];
 
-    for (const file of files) {
-      if (file.endsWith('.ts') || file.endsWith('.js')) {
-        const content = await readFile(join(composablesDir, file), 'utf-8');
+    // Função para escanear um diretório
+    async function scanDirectory(dirPath) {
+      try {
+        const files = await readdir(dirPath, { withFileTypes: true });
 
-        // Extrair nomes de composables usando diferentes padrões de regex
-        const patterns = [
-          /export\s+const\s+(use[A-Za-z0-9]+)/g, // export const useName = () => {
-          /export\s+function\s+(use[A-Za-z0-9]+)/g, // export function useName() {
-          /export\s+default\s+function\s+(use[A-Za-z0-9]+)/g, // export default function useName() {
-        ];
+        for (const file of files) {
+          const fullPath = join(dirPath, file.name);
 
-        for (const pattern of patterns) {
-          const matches = content.match(pattern);
+          if (file.isDirectory()) {
+            // Recursivamente escanear subdiretórios (como stores/smartico)
+            await scanDirectory(fullPath);
+          } else if (file.name.endsWith('.ts') || file.name.endsWith('.js')) {
+            const content = await readFile(fullPath, 'utf-8');
 
-          if (matches) {
-            for (const match of matches) {
-              // Extrair apenas o nome do composable
-              const name = match.replace(
-                /export\s+(const\s+|function\s+|default\s+function\s+)/,
-                '',
-              );
+            // Extrair nomes de composables usando diferentes padrões de regex
+            const patterns = [
+              /export\s+const\s+(use[A-Za-z0-9]+)/g, // export const useName = () => {
+              /export\s+function\s+(use[A-Za-z0-9]+)/g, // export function useName() {
+              /export\s+default\s+function\s+(use[A-Za-z0-9]+)/g, // export default function useName() {
+            ];
 
-              if (name.startsWith('use') && !composableNames.includes(name)) {
-                composableNames.push(name);
+            for (const pattern of patterns) {
+              const matches = content.match(pattern);
+
+              if (matches) {
+                for (const match of matches) {
+                  // Extrair apenas o nome do composable
+                  const name = match.replace(
+                    /export\s+(const\s+|function\s+|default\s+function\s+)/,
+                    '',
+                  );
+
+                  if (
+                    name.startsWith('use') &&
+                    !composableNames.includes(name)
+                  ) {
+                    composableNames.push(name);
+                  }
+                }
               }
             }
           }
         }
+      } catch (error) {
+        console.warn(
+          `⚠️ Não foi possível escanear o diretório ${dirPath}:`,
+          error.message,
+        );
       }
     }
 
+    // Escanear todos os diretórios
+    for (const dir of dirsToScan) {
+      await scanDirectory(dir);
+    }
+
     console.log('🔍 Composables detectados:', composableNames);
+    console.log(`📁 Diretórios escaneados: ${dirsToScan.join(', ')}`);
 
     // Ler biome.json atual
     const biomeConfig = JSON.parse(await readFile('./biome.json', 'utf-8'));
@@ -98,7 +122,7 @@ async function updateBiomeGlobals() {
     console.log(
       '✅ biome.json atualizado com',
       composableNames.length,
-      'composables customizados',
+      'composables customizados detectados em composables/ e stores/',
     );
   } catch (error) {
     console.error('❌ Erro ao atualizar biome.json:', error);
