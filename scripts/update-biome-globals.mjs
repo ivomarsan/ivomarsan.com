@@ -26,11 +26,12 @@ async function updateBiomeGlobals() {
           } else if (file.name.endsWith('.ts') || file.name.endsWith('.js')) {
             const content = await readFile(fullPath, 'utf-8');
 
-            // Extrair nomes de composables usando diferentes padrões de regex
+            // Extrair nomes de composables e stores usando diferentes padrões de regex
             const patterns = [
               /export\s+const\s+(use[A-Za-z0-9]+)/g, // export const useName = () => {
               /export\s+function\s+(use[A-Za-z0-9]+)/g, // export function useName() {
               /export\s+default\s+function\s+(use[A-Za-z0-9]+)/g, // export default function useName() {
+              /export\s+const\s+(use[A-Za-z0-9]+Store)\s*=\s*defineStore/g, // export const useNameStore = defineStore
             ];
 
             for (const pattern of patterns) {
@@ -38,11 +39,14 @@ async function updateBiomeGlobals() {
 
               if (matches) {
                 for (const match of matches) {
-                  // Extrair apenas o nome do composable
-                  const name = match.replace(
+                  // Extrair apenas o nome do composable/store
+                  const cleanMatch = match.replace(
                     /export\s+(const\s+|function\s+|default\s+function\s+)/,
                     '',
                   );
+
+                  // Para stores com defineStore, extrair só o nome da store
+                  const name = cleanMatch.replace(/\s*=\s*defineStore.*/, '');
 
                   if (
                     name.startsWith('use') &&
@@ -74,8 +78,9 @@ async function updateBiomeGlobals() {
     // Ler biome.json atual
     const biomeConfig = JSON.parse(await readFile('./biome.json', 'utf-8'));
 
-    // Definir globals padrão do Nuxt
+    // Definir globals padrão do Nuxt e Pinia
     const nuxtDefaults = [
+      // Vue Composition API
       'ref',
       'computed',
       'reactive',
@@ -87,6 +92,7 @@ async function updateBiomeGlobals() {
       'onBeforeUpdate',
       'onUnmounted',
       'onBeforeUnmount',
+      // Nuxt Composables
       'useRoute',
       'useRouter',
       'navigateTo',
@@ -108,6 +114,11 @@ async function updateBiomeGlobals() {
       'clearError',
       'isNuxtError',
       'defineNuxtConfig',
+      // Pinia
+      'defineStore',
+      'storeToRefs',
+      'acceptHMRUpdate',
+      // Global
       'process',
     ];
 
