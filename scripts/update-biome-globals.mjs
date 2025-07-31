@@ -18,13 +18,27 @@ async function updateBiomeGlobals() {
       if (file.endsWith('.ts') || file.endsWith('.js')) {
         const content = await readFile(join(composablesDir, file), 'utf-8');
 
-        // Extrair nomes de composables usando regex
-        const matches = content.match(/export\s+const\s+(use[A-Za-z0-9]+)/g);
-        if (matches) {
-          for (const match of matches) {
-            const name = match.replace(/export\s+const\s+/, '');
-            if (name.startsWith('use') && !composableNames.includes(name)) {
-              composableNames.push(name);
+        // Extrair nomes de composables usando diferentes padrões de regex
+        const patterns = [
+          /export\s+const\s+(use[A-Za-z0-9]+)/g, // export const useName = () => {
+          /export\s+function\s+(use[A-Za-z0-9]+)/g, // export function useName() {
+          /export\s+default\s+function\s+(use[A-Za-z0-9]+)/g, // export default function useName() {
+        ];
+
+        for (const pattern of patterns) {
+          const matches = content.match(pattern);
+
+          if (matches) {
+            for (const match of matches) {
+              // Extrair apenas o nome do composable
+              const name = match.replace(
+                /export\s+(const\s+|function\s+|default\s+function\s+)/,
+                '',
+              );
+
+              if (name.startsWith('use') && !composableNames.includes(name)) {
+                composableNames.push(name);
+              }
             }
           }
         }
