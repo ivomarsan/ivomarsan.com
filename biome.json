@@ -96,6 +96,7 @@
       "onBeforeUpdate",
       "onUnmounted",
       "onBeforeUnmount",
+      "useNuxtApp",
       "useRoute",
       "useRouter",
       "navigateTo",
@@ -117,6 +118,9 @@
       "clearError",
       "isNuxtError",
       "defineNuxtConfig",
+      "defineStore",
+      "storeToRefs",
+      "acceptHMRUpdate",
       "process"
     ]
   },
