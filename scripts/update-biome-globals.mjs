@@ -4,13 +4,14 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 /**
- * Script para auto-detectar composables do Nuxt e adicionar ao biome.json
+ * Script para auto-detectar composables do Nuxt e funções utilitárias e adicionar ao biome.json
  */
 async function updateBiomeGlobals() {
   try {
     // Diretórios a serem escaneados
-    const dirsToScan = ['./composables', './utils', './stores'];
+    const dirsToScan = ['./composables', './stores', './utils'];
     const composableNames = [];
+    const utilityFunctions = [];
 
     // Função para escanear um diretório
     async function scanDirectory(dirPath) {
@@ -25,6 +26,45 @@ async function updateBiomeGlobals() {
             await scanDirectory(fullPath);
           } else if (file.name.endsWith('.ts') || file.name.endsWith('.js')) {
             const content = await readFile(fullPath, 'utf-8');
+
+            // Se estiver na pasta utils, extrair funções utilitárias
+            if (dirPath.includes('/utils') || dirPath.includes('\\utils')) {
+              const utilityPatterns = [
+                /export\s+function\s+([a-zA-Z_$][a-zA-Z0-9_$]*)/g, // export function functionName
+                /export\s+const\s+([a-zA-Z_$][a-zA-Z0-9_$]*)\s*=/g, // export const functionName =
+                /export\s+default\s+function\s+([a-zA-Z_$][a-zA-Z0-9_$]*)/g, // export default function functionName
+                /export\s*{\s*([^}]+)\s*}/g, // export { func1, func2 }
+              ];
+
+              for (const pattern of utilityPatterns) {
+                const matches = content.matchAll(pattern);
+
+                for (const match of matches) {
+                  if (pattern.source.includes('{')) {
+                    // Para export { func1, func2 }, dividir por vírgulas
+                    const functions = match[1]
+                      .split(',')
+                      .map((f) => f.trim().replace(/\s+as\s+\w+/, '')) // Remove aliases
+                      .filter((f) => f && !f.includes('type')); // Remove exports de tipo
+
+                    for (const func of functions) {
+                      if (func && !utilityFunctions.includes(func)) {
+                        utilityFunctions.push(func);
+                      }
+                    }
+                  } else {
+                    const functionName = match[1];
+
+                    if (
+                      functionName &&
+                      !utilityFunctions.includes(functionName)
+                    ) {
+                      utilityFunctions.push(functionName);
+                    }
+                  }
+                }
+              }
+            }
 
             // Extrair nomes de composables e stores usando diferentes padrões de regex
             const patterns = [
@@ -73,6 +113,7 @@ async function updateBiomeGlobals() {
     }
 
     console.log('🔍 Composables detectados:', composableNames);
+    console.log('🛠️ Funções utilitárias detectadas:', utilityFunctions);
     console.log(`📁 Diretórios escaneados: ${dirsToScan.join(', ')}`);
 
     // Ler biome.json atual
@@ -123,8 +164,10 @@ async function updateBiomeGlobals() {
       'process',
     ];
 
-    // Combinar globals (defaults + composables customizados)
-    const allGlobals = [...new Set([...nuxtDefaults, ...composableNames])];
+    // Combinar globals (defaults + composables customizados + funções utilitárias)
+    const allGlobals = [
+      ...new Set([...nuxtDefaults, ...composableNames, ...utilityFunctions]),
+    ];
 
     biomeConfig.javascript.globals = allGlobals;
 
@@ -134,7 +177,9 @@ async function updateBiomeGlobals() {
     console.log(
       '✅ biome.json atualizado com',
       composableNames.length,
-      'composables customizados detectados em composables/ e stores/',
+      'composables customizados e',
+      utilityFunctions.length,
+      'funções utilitárias detectadas em composables/, stores/ e utils/',
     );
   } catch (error) {
     console.error('❌ Erro ao atualizar biome.json:', error);
