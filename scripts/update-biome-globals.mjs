@@ -9,7 +9,7 @@ import { join } from 'node:path';
 async function updateBiomeGlobals() {
   try {
     // Diretórios a serem escaneados
-    const dirsToScan = ['./composables', './stores'];
+    const dirsToScan = ['./composables', './utils', './stores'];
     const composableNames = [];
 
     // Função para escanear um diretório
@@ -93,6 +93,7 @@ async function updateBiomeGlobals() {
       'onUnmounted',
       'onBeforeUnmount',
       // Nuxt Composables
+      'useNuxtApp',
       'useRoute',
       'useRouter',
       'navigateTo',
